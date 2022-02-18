@@ -1,28 +1,44 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-app style="background-color: #263238">
+    <v-main>
+      <router-view />
+    </v-main>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import { mapActions } from "vuex";
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  name: "App",
+  data: () => ({
+    //
+  }),
+  methods: {
+    ...mapActions(["disconnect"]),
+  },
+  // created() {
+  //   this.connect();
+  // },
+  beforeUnmount() {
+    this.disconnect();
+  },
+  mounted() {
+    this.disconnect();
+  },
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+html {
+  padding: 0;
+  margin: 0;
+  height: 100vh !important;
+  color: #42b883;
+  background-color: #263238;
+}
+
+.full-height {
+  height: 100%;
 }
 </style>
